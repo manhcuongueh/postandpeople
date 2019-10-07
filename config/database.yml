@@ -1,0 +1,24 @@
+# MySQL. Versions 5.0 and up are supported.
+#
+# Install the MySQL driver
+#   gem install mysql2
+#
+# Ensure the MySQL gem is defined in your Gemfile
+#   gem 'mysql2'
+#
+# And be sure to use new-style password hashing:
+#   http://dev.mysql.com/doc/refman/5.7/en/old-client.html
+#
+default: &default
+  adapter: mysql2
+  pool: 10
+  username: root
+  password: Manhcuong91
+  socket: /var/run/mysqld/mysqld.sock
+  encoding: utf8mb4
+  collation: utf8mb4_unicode_ci
+
+development:
+  <<: *default
+  database: postandpeople
+ 
