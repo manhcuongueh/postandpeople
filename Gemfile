@@ -20,7 +20,7 @@ gem 'coffee-rails', '~> 4.2'
 gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
-gem "nokogiri", "~> 1.8.2"
+gem "nokogiri", "~> 1.9.1"
 gem "mysql2", "~> 0.4.4"
 gem 'selenium-webdriver'
 gem 'kaminari'    
