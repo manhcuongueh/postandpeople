@@ -20,7 +20,7 @@ gem 'coffee-rails', '~> 4.2'
 gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
-gem 'nokogiri'
+gem "nokogiri", "~> 1.8.2"
 gem "mysql2", "~> 0.4.4"
 gem 'selenium-webdriver'
 gem 'kaminari'    
@@ -28,6 +28,15 @@ gem 'rack-cors'
 gem 'active_model_serializers'
 gem 'rubyXL'
 gem 'rake', '~> 13.0.0'
+gem "railties", "~> 5.2.0"
+gem "actionview", "~> 5.2.0"
+gem "activejob", "~> 5.2.0"
+gem "activestorage", "~> 5.2.0"
+gem "rack", "~> 2.0.5"
+gem "loofah", "~> 2.2.2"
+gem "rubyzip", "~> 1.2.1"
+gem "ffi", "~> 1.9.23"
+gem "sprockets", "~> 3.7.1"
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password

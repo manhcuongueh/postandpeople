@@ -10,48 +10,39 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_26_002745) do
+ActiveRecord::Schema.define(version: 2019_11_02_005755) do
 
   create_table "hashtags", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci", force: :cascade do |t|
-    t.string "hashtags"
-    t.integer "use_by_user"
-    t.integer "use_by_global"
-    t.string "avai"
-    t.integer "user_id"
+    t.date "date"
+    t.string "tag"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "percentages", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci", force: :cascade do |t|
-    t.string "link"
-    t.string "image", limit: 355
-    t.integer "reply_time"
-    t.integer "total_cm"
-    t.float "percentage"
-    t.integer "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "statuses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci", force: :cascade do |t|
+  create_table "people", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci", force: :cascade do |t|
     t.string "username"
-    t.string "status"
-    t.string "string"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci", force: :cascade do |t|
-    t.string "username"
-    t.string "date_start"
-    t.string "date_end"
+    t.string "url"
+    t.integer "posts"
     t.integer "followers"
-    t.string "level"
-    t.decimal "score", precision: 12, scale: 2
-    t.integer "sum"
+    t.integer "followings"
+    t.text "bio"
+    t.integer "hashtag_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.float "repond_percentage"
+    t.string "link_in_bio"
+  end
+
+  create_table "posts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci", force: :cascade do |t|
+    t.string "username"
+    t.text "image"
+    t.text "description"
+    t.integer "likes"
+    t.integer "comments"
+    t.string "date"
+    t.text "hashtags"
+    t.integer "hashtag_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

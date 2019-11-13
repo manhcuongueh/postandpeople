@@ -14,23 +14,36 @@
   </head>
 
 <body>
-  <nav class="navbar navbar-expand navbar-dark bg-dark">
-      <a class="navbar-brand" href="/">Instagram Crawling</a>
+    <nav class="navbar navbar-expand navbar-dark bg-dark">
+      <a class="navbar-brand" href="/">Hashtags Crawling</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample02" aria-controls="navbarsExample02" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
-  </nav>
-  <section class="content" style="min-height: auto;">
-      <% flash.each do |key, value| %>
-      <div align="center">
-        <div class="col-lg-4 text-center">
-          <div class="alert alert-<%= key %> ">
-            <%= value %>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarsExample02">
+        <ul class="navbar-nav mr-auto ml-4">
+          <li class="nav-item active">
+            <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="/hashtag">Hashtag</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="/description">Description</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div class="container-fluid">
+      <div class="container">
+        <% flash.each do |key, value| %>
+          <div class="col-lg-12 mt-4">
+            <div class="alert alert-<%= key %> ">
+              <%= value %>
+            </div>
           </div>
-        </div>
-        </div>
-      <% end %>
-    </section>
-   <div class="container-fluid">
+        <% end %>
+      </div>
       <%= yield %>
    </div>
   </body>

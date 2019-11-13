@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  posts: 1
+  followers: 1
+  followings: 1
+  bio: MyText
+
+two:
+  posts: 1
+  followers: 1
+  followings: 1
+  bio: MyText

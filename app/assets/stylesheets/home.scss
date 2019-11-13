@@ -7,28 +7,16 @@ input{
     border: solid black 2px;
     margin-right: 10px;
     margin-bottom: 3px;
+    padding: 0 20px;
 }
 .btn{
     border-radius: 0 !important;
-    height: 47px !important;
     width: 100px;
 }
-.active{
-    border-bottom: 1px solid #000;
-    border-radius: 0 !important;
-    background-color: white !important;
-}
-.nav-link{
-    color: black !important;
-}
-.pagination {
-    margin: auto;
+textarea{
+    display: block;
+    border: solid black 2px;
+    margin-right: 10px;
     margin-bottom: 10px;
-    margin-top: 20px;
-    width: 40%;
-    border: 1px solid grey;
-    padding: 10px;
-}
-.pagination a {
-    padding: 8px 16px;
+    padding: 5px 10px;
 }
