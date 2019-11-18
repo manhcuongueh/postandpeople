@@ -1,11 +1,28 @@
 <div class="container">
-  <div class="container tab-pane active">
-    <h5 style="margin-top:15px">ENTER A DESCRIPTION</h5>
+  <div id="hashtag" class="container tab-pane active">
+    <h5 style="margin-top:15px">ENTER DESCRIPTION</h5>
     <div class="input-group" style="margin-top: 20px">
-      <%= form_for :description, url: '/' do |f| %>
-        <%= text_area_tag :description, "", cols: 80, rows: 10%>
+      <%= form_for :description, url: '/description' do |f| %>
+        <%= text_area_tag :description, params[:description], cols: 80, rows: 6%>
         <%= f.submit "Submit", class: "btn btn-dark"%>
       <% end %>
     </div>
+  </div>
+  
+  <div class="pl-3 mt-5">
+    <% if @des.present? %>
+      <table class="table w-50">
+        <thead class="thead-dark">
+          <th>Words Count</th>
+          <th>Characters Count</th>
+        </thead>
+        <tbody>
+            <tr>
+              <td><%=@des_word%></td>
+              <td><%=@des%></td>
+            </tr>
+        </tbody>
+      </table>
+    <% end %>
   </div>
 </div>
