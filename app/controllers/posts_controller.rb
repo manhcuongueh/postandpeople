@@ -28,22 +28,24 @@ class PostsController < ApplicationController
         worksheet=workbook[0]
 
         #save information for all post
-        worksheet.add_cell(0, 0, "ID")
-        worksheet.add_cell(0, 1, "Image_Link")
-        worksheet.add_cell(0, 2, "Description")
-        worksheet.add_cell(0, 3, "Likes")
-        worksheet.add_cell(0, 4, "Comments")
-        worksheet.add_cell(0, 5, "Dates")
-        worksheet.add_cell(0, 6, "Hashtags")
+        worksheet.add_cell(0, 0, "Post URL")
+        worksheet.add_cell(0, 1, "ID")
+        worksheet.add_cell(0, 2, "Image_Link")
+        worksheet.add_cell(0, 3, "Description")
+        worksheet.add_cell(0, 4, "Likes")
+        worksheet.add_cell(0, 5, "Comments")
+        worksheet.add_cell(0, 6, "Dates")
+        worksheet.add_cell(0, 7, "Hashtags")
 
         hashtag.posts.each_with_index do |post, index|
-            worksheet.add_cell(index+1, 0, post.username)
-            worksheet.add_cell(index+1, 1, post.image)
-            worksheet.add_cell(index+1, 2, post.description)
-            worksheet.add_cell(index+1, 3, post.likes)
-            worksheet.add_cell(index+1, 4, post.comments)
-            worksheet.add_cell(index+1, 5, post.date)
-            worksheet.add_cell(index+1, 6, post.hashtags)
+            worksheet.add_cell(index+1, 0, post.url)
+            worksheet.add_cell(index+1, 1, post.username)
+            worksheet.add_cell(index+1, 2, post.image)
+            worksheet.add_cell(index+1, 3, post.description)
+            worksheet.add_cell(index+1, 4, post.likes)
+            worksheet.add_cell(index+1, 5, post.comments)
+            worksheet.add_cell(index+1, 6, post.date)
+            worksheet.add_cell(index+1, 7, post.hashtags)
         end
         
         #send
@@ -80,6 +82,7 @@ class PostsController < ApplicationController
     def selenium_code
         # kill other chrome process
         system("killall chrome")
+        times = params[:times].to_i - 1
         @hashtag = Hashtag.new(date: Time.now.to_date, tag: params[:hashtag])
         post_dom=[]
         #run chrome
@@ -95,9 +98,9 @@ class PostsController < ApplicationController
         @@bot.find_element(:id, 'id_username').send_keys 'minhho402'
         @@bot.find_element(:id, 'id_password').send_keys '515173'
         @@bot.find_element(:class, 'button-green').click
-        # sleep 1
+        sleep 2
         @@bot.navigate.to "https://www.instagram.com/explore/tags/#{params[:hashtag]}/"
-        sleep 2  
+        sleep 2
         if @@bot.find_elements(:xpath, '/html/body/span/section/main/article/div/div/div/div/div').size >0
             no_of_posts = @@bot.find_element(:xpath, '/html/body/span/section/main/header/div[2]/div[1]/div[2]/span/span').text
             top_dom = @@bot.find_elements(:xpath, '/html/body/span/section/main/article/div/div/div/div/div')
@@ -126,11 +129,12 @@ class PostsController < ApplicationController
                         end    
                     end 
                 end
-                break if no_of_posts.remove(",").to_i <= post_dom.size || post_dom.size > 1000
+                break if no_of_posts.remove(",").to_i <= post_dom.size || post_dom.size > times
             end
 
             @@flag = true
             count = 0
+            post_dom = post_dom[0..times]
             post_dom.each_with_index do |post, index|
                 puts index
                 puts count
@@ -160,12 +164,13 @@ class PostsController < ApplicationController
                         end
                     end
                     @hashtag.posts.new(username: username, image: post[1], description: post_text, likes: post_likes,
-                        comments: post_comments, date: post_date, hashtags: hashtags)
+                        comments: post_comments, date: post_date, hashtags: hashtags, url: post[0])
 
                     #people
                     url = @@bot.find_element(:xpath, '/html/body/span/section/main/div/div/article/header/div[2]/div[1]/div[1]/h2/a')['href']
                     doc =  @@bot.navigate.to url
                     count += check?(url)
+                    people_bio = @@bot.find_element(:xpath, '/html/body/span/section/main/div/header/section/div[2]').text
                     doc = @@bot.page_source
                     people_posts = doc.split('"edge_owner_to_timeline_media":{"count":')[1]
                     people_posts = people_posts.split(',"page_info":')[0]
@@ -173,8 +178,6 @@ class PostsController < ApplicationController
                     people_followers = people_followers.split('},"followed_by_viewer"')[0]
                     people_followings = doc.split('"edge_follow":{"count":')[1]
                     people_followings = people_followings.split('},"follows_viewer"')[0]
-                    people_bio = doc.split('{"user":{"biography":"')[1]
-                    people_bio = people_bio.split('","blocked_by_viewer":')[0]
                     people_link_in_bio = doc.split('"external_url":"')[1]
                     people_link_in_bio = people_link_in_bio.split('","external_url_linkshimmed"')[0] if people_link_in_bio.present?
                     @hashtag.persons.new(username: username, url: url, posts: people_posts, followers: people_followers,

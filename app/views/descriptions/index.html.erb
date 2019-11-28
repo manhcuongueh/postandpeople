@@ -13,14 +13,16 @@
     <% if @des.present? %>
       <table class="table w-50">
         <thead class="thead-dark">
-          <th>Words Count</th>
-          <th>Characters Count</th>
+          <th>Word</th>
+          <th>Occurrences</th>
         </thead>
         <tbody>
+          <%@des.keys.each do |w|%>
             <tr>
-              <td><%=@des_word%></td>
-              <td><%=@des%></td>
+              <td><%=w%></td>
+              <td><%=@des[w]%></td>
             </tr>
+          <%end%>
         </tbody>
       </table>
     <% end %>

@@ -1,4 +1,4 @@
 class Hashtag < ApplicationRecord
-    has_many :persons
-    has_many :posts
+    has_many :persons, dependent: :destroy
+    has_many :posts, dependent: :destroy
 end

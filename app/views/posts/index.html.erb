@@ -1,8 +1,9 @@
 <div class="container">
   <div id="hashtag" class="container tab-pane active">
     <div class="input-group" style="margin-top: 20px">
-      <%= form_for :hashtag, url: '/', html: {style: "width: 85%"} do |f| %>
-        <%= text_field_tag :hashtag, nil, placeholder: "Enter a Hashtag" %>
+      <%= form_for :hashtag, url: '/', html: {style: "width: 100%"} do |f| %>
+        <%= text_field_tag :hashtag, nil, style: "width: 70%", placeholder: "Enter a Hashtag" %>
+        <%= text_field_tag :times, nil, style: "width: 15%", placeholder: "Number of Posts" %>
         <%= f.submit "Crawl", class: "btn btn-dark", data: {confirm: "Are you sure to crawl this hashtag?"}%>
       <% end %>
     </div>
