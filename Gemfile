@@ -36,7 +36,7 @@ gem "rack", "~> 2.0.5"
 gem "loofah", "~> 2.2.2"
 gem "rubyzip", "~> 1.2.1"
 gem "ffi", "~> 1.9.23"
-gem "sprockets", "~> 3.7.1"
+gem "sprockets", "~> 3.7.2"
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
