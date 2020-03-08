@@ -34,7 +34,7 @@ gem "activejob", "~> 5.2.0"
 gem "activestorage", "~> 5.2.0"
 gem "rack", "~> 2.0.5"
 gem "loofah", "~> 2.2.2"
-gem "rubyzip", "~> 1.2.1"
+gem "rubyzip", "~> 1.3.0"
 gem "ffi", "~> 1.9.23"
 gem "sprockets", "~> 3.7.1"
 # Use Redis adapter to run Action Cable in production
